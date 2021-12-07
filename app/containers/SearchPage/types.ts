@@ -1,6 +1,6 @@
-import { Book } from 'types';
-import { ActionType } from 'typesafe-actions';
-import * as actions from './actions';
+import { Book } from "types";
+import { ActionType } from "typesafe-actions";
+import * as actions from "./actions";
 
 interface RequestType {
   title: string;
@@ -12,6 +12,8 @@ interface RequestType {
 /* --- STATE --- */
 interface SearchPageState {
   searchResults: Array<Book>;
+  totalHits: number;
+  currentPage: number;
 }
 
 /* --- ACTIONS --- */

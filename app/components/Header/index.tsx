@@ -1,12 +1,12 @@
-import * as React from 'react';
-import { FormattedMessage } from 'react-intl';
+import * as React from "react";
+import { FormattedMessage } from "react-intl";
 
-import A from './A';
-import Img from './Img';
-import NavBar from './NavBar';
-import HeaderLink from './HeaderLink';
-import Banner from './newBanner.jpg';
-import messages from './messages';
+import A from "./A";
+import Img from "./Img";
+import NavBar from "./NavBar";
+import HeaderLink from "./HeaderLink";
+import Banner from "./newBanner.jpg";
+import messages from "./messages";
 
 function Header() {
   return (
@@ -19,6 +19,7 @@ function Header() {
           <FormattedMessage {...messages.home} />
         </HeaderLink>
         <HeaderLink to="/search">Search</HeaderLink>
+        <HeaderLink to="/charts">Charts</HeaderLink>
       </NavBar>
     </div>
   );

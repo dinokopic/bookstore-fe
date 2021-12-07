@@ -10,6 +10,7 @@ import { ContainerState as LandingPageState } from 'containers/LandingPage/types
 import { ContainerState as FiltersState } from 'containers/Filters/types';
 import { ContainerState as SearchState } from 'containers/Search/types';
 import { ContainerState as SearchPageState } from 'containers/SearchPage/types';
+import { ContainerState as ChartsPageState } from 'containers/ChartsPage/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
 export interface InjectedStore extends Store {
@@ -39,6 +40,7 @@ export interface ApplicationRootState {
   readonly filters: FiltersState;
   readonly search: SearchState;
   readonly searchPage: SearchPageState;
+  readonly chartsPage: ChartsPageState;
   // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly
 
   // for testing purposes

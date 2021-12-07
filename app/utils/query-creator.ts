@@ -1,11 +1,9 @@
 export function queryCreator(object) {
-  console.log(object);
   const keys = Object.keys(object);
-  let query = '';
+  let query = "";
   for (let i = 0; i < keys.length; i++) {
     const key = keys[i];
-    console.log(key, object[key]);
-    if (Object.prototype.toString.call(object[key]) === '[object Array]') {
+    if (Object.prototype.toString.call(object[key]) === "[object Array]") {
       for (let j = 0; j < object[key].length; j++) {
         query += `&${key}=${encodeURIComponent(object[key][j])}`;
       }
@@ -15,8 +13,8 @@ export function queryCreator(object) {
       }
     }
   }
-  if (query != '') {
-    query = '?' + query.substring(1);
+  if (query != "") {
+    query = "?" + query.substring(1);
   }
   return query;
 }

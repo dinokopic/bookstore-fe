@@ -4,31 +4,31 @@
  *
  */
 
-import React, { useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
-import { useSelector, useDispatch } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-import { OrderByCategory } from './types';
-import { useInjectReducer, useInjectSaga } from 'redux-injectors';
+import React, { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
+import { useSelector, useDispatch } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { OrderByCategory } from "./types";
+import { useInjectReducer, useInjectSaga } from "redux-injectors";
 
 import makeSelectLandingPage, {
   makeSelectLandingPagePopularBooks,
   makeSelectLandingPageLatestBooks,
   makeSelectLandingPageTotalHits,
   makeSelectLandingPageSelectedCategory,
-} from './selectors';
+} from "./selectors";
 
-import reducer from './reducer';
-import saga from './saga';
+import reducer from "./reducer";
+import saga from "./saga";
 import {
   getBooks,
   getLatestBooks,
   setLatestBooks,
   setSelectedCategory,
-} from './actions';
-import BookList from 'components/BookList';
-import BookPagination from 'components/BookPagination';
-import BookDropdown from 'components/BookDropdown';
+} from "./actions";
+import BookList from "components/BookList";
+import BookPagination from "components/BookPagination";
+import BookDropdown from "components/BookDropdown";
 
 const stateSelector = createStructuredSelector({
   landingPage: makeSelectLandingPage(),
@@ -40,12 +40,12 @@ const stateSelector = createStructuredSelector({
 
 interface Props {}
 
-const categories = ['Popular', 'Latest'];
+const categories = ["Popular", "Latest"];
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function LandingPage(props: Props) {
-  useInjectReducer({ key: 'landingPage', reducer: reducer });
-  useInjectSaga({ key: 'landingPage', saga: saga });
+  useInjectReducer({ key: "landingPage", reducer: reducer });
+  useInjectSaga({ key: "landingPage", saga: saga });
   const pageSize = 12;
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const {
@@ -90,13 +90,14 @@ function LandingPage(props: Props) {
       </Helmet>
       <div
         style={{
-          display: 'flex',
-          justifyContent: 'flex-end',
-          alignItems: 'center',
+          display: "flex",
+          justifyContent: "flex-end",
+          alignItems: "center",
         }}
       >
-        <div style={{ marginRight: '1rem' }}>Order by:</div>
+        <div style={{ marginRight: "1rem" }}>Order by:</div>
         <BookDropdown
+          isRadio={false}
           handleOnClick={(option: string) => handleOptionClick(option)}
           options={[OrderByCategory.popular, OrderByCategory.latest]}
           selectedOption={OrderByCategory.popular}

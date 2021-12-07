@@ -3,27 +3,29 @@
  * BookPagination
  *
  */
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 // import styled from 'styles/styled-components';
 
-import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
+import { Pagination, PaginationItem, PaginationLink } from "reactstrap";
 
 interface Props {
   numberOfPages: number;
   handlePageChange: any;
+  currentPage?: number;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function BookPagination(props: Props) {
   const { numberOfPages, handlePageChange } = props;
   const [currentPage, setCurrentPage] = useState(0);
+
   return (
     <div
       style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignContent: 'center',
+        display: "flex",
+        justifyContent: "center",
+        alignContent: "center",
       }}
     >
       <Pagination>

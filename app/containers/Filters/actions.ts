@@ -4,11 +4,11 @@
  *
  */
 
-import { action } from 'typesafe-actions';
-import { FilterType } from './types';
+import { action } from "typesafe-actions";
+import { FilterType } from "./types";
 
-import ActionTypes from './constants';
-import { ContainerState } from './types';
+import ActionTypes from "./constants";
+import { ContainerState } from "./types";
 
 export const defaultAction = () => action(ActionTypes.DEFAULT_ACTION);
 
@@ -17,8 +17,8 @@ export const getFiltersAction = () => action(ActionTypes.GET_FILTERS);
 export const setFiltersAction = (filters: ContainerState) =>
   action(ActionTypes.SET_FILTERS, filters);
 
-export const getAuthorFiltersAction = (title: String) =>
-  action(ActionTypes.GET_AUTHOR_FILTERS, title);
+export const getAuthorFiltersAction = () =>
+  action(ActionTypes.GET_AUTHOR_FILTERS);
 
 export const setAuthorFiltersAction = (authorFilters: Array<FilterType>) =>
   action(ActionTypes.SET_AUTHOR_FILTERS, authorFilters);
@@ -33,7 +33,7 @@ export const getNumberOfAwardsFiltersAction = () =>
   action(ActionTypes.GET_NUMBER_OF_AWARDS_FILTERS);
 
 export const setNumberOfAwardsFiltersAction = (
-  numberOfAwardsFilters: Array<FilterType>,
+  numberOfAwardsFilters: Array<FilterType>
 ) => action(ActionTypes.SET_NUMBER_OF_AWARDS_FILTERS, numberOfAwardsFilters);
 
 export const getSelectedAuthor = () => action(ActionTypes.GET_SELECTED_AUTHOR);

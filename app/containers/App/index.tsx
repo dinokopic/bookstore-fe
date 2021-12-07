@@ -6,22 +6,23 @@
  * contain code that should be seen on all pages. (e.g. navigation bar)
  */
 
-import * as React from 'react';
-import { Helmet } from 'react-helmet-async';
-import styled from 'styles/styled-components';
-import { Switch, Route } from 'react-router-dom';
-import { hot } from 'react-hot-loader/root';
+import * as React from "react";
+import { Helmet } from "react-helmet-async";
+import styled from "styles/styled-components";
+import { Switch, Route } from "react-router-dom";
+import { hot } from "react-hot-loader/root";
 
-import HomePage from 'containers/HomePage/Loadable';
-import FeaturePage from 'containers/FeaturePage/Loadable';
-import NotFoundPage from 'containers/NotFoundPage/Loadable';
-import Header from 'components/Header';
-import Footer from 'components/Footer';
+import HomePage from "containers/HomePage/Loadable";
+import FeaturePage from "containers/FeaturePage/Loadable";
+import NotFoundPage from "containers/NotFoundPage/Loadable";
+import Header from "components/Header";
+import Footer from "components/Footer";
 
-import GlobalStyle from '../../global-styles';
-import LandingPage from 'containers/LandingPage';
-import Filters from 'containers/Filters';
-import SearchPage from 'containers/SearchPage';
+import GlobalStyle from "../../global-styles";
+import LandingPage from "containers/LandingPage";
+import Filters from "containers/Filters";
+import SearchPage from "containers/SearchPage";
+import ChartsPage from "containers/ChartsPage";
 
 const AppWrapper = styled.div`
   max-width: 90%;
@@ -45,6 +46,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={LandingPage} />
         <Route path="/search" component={SearchPage} />
+        <Route path="/charts" component={ChartsPage} />
         <Route component={NotFoundPage} />
       </Switch>
       <Footer />

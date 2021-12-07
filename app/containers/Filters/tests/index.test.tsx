@@ -6,35 +6,35 @@
  *
  */
 
-import React from 'react';
-import { render } from '@testing-library/react';
-import { IntlProvider } from 'react-intl';
-import { Provider } from 'react-redux';
-import history from 'utils/history';
+import React from "react";
+import { render } from "@testing-library/react";
+import { IntlProvider } from "react-intl";
+import { Provider } from "react-redux";
+import history from "utils/history";
 
-import Filters from '../index';
-import { DEFAULT_LOCALE } from '../../../locales';
-import configureStore from '../../../configureStore';
-describe('<Filters />', () => {
+import Filters from "../index";
+import { DEFAULT_LOCALE } from "../../../locales";
+import configureStore from "../../../configureStore";
+describe("<Filters />", () => {
   let store;
 
   beforeEach(() => {
     store = configureStore({}, history);
   });
 
-  it('Expect to not log errors in console', () => {
-    const spy = jest.spyOn(global.console, 'error');
+  it("Expect to not log errors in console", () => {
+    const spy = jest.spyOn(global.console, "error");
     render(
       <Provider store={store}>
         <IntlProvider locale={DEFAULT_LOCALE}>
           <Filters />
         </IntlProvider>
-      </Provider>,
+      </Provider>
     );
     expect(spy).not.toHaveBeenCalled();
   });
 
-  it('Expect to have additional unit tests specified', () => {
+  it("Expect to have additional unit tests specified", () => {
     expect(true).toEqual(false);
   });
 
@@ -43,7 +43,7 @@ describe('<Filters />', () => {
    *
    * @see {@link https://jestjs.io/docs/en/api#testskipname-fn}
    */
-  it.skip('Should render and match the snapshot', () => {
+  it.skip("Should render and match the snapshot", () => {
     const {
       container: { firstChild },
     } = render(
@@ -51,7 +51,7 @@ describe('<Filters />', () => {
         <IntlProvider locale={DEFAULT_LOCALE}>
           <Filters />
         </IntlProvider>
-      </Provider>,
+      </Provider>
     );
     expect(firstChild).toMatchSnapshot();
   });

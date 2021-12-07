@@ -3,12 +3,12 @@
  * BookList
  *
  */
-import React from 'react';
+import React from "react";
 
 // import styled from 'styles/styled-components';
 
-import { FormattedMessage } from 'react-intl';
-import './customCss.css';
+import { FormattedMessage } from "react-intl";
+//import './customCss.css';
 import {
   Card,
   CardBody,
@@ -23,9 +23,8 @@ import {
   ModalBody,
   ModalHeader,
   Row,
-} from 'reactstrap';
-import { Book } from 'types';
-import messages from './messages';
+} from "reactstrap";
+import { Book } from "types";
 
 interface Props {
   books: Array<Book>;
@@ -39,25 +38,25 @@ function BookList(props: Props) {
 
   // Toggle for Modal
   const toggle = () => setModal(!modal);
-  console.log('OVO JE U BOOKLISTU', props.books);
+
   return (
     <div>
       <Container fluid>
         <Row sm="2" md="3" lg="4">
-          {props.books.map(book => {
+          {props.books.map((book) => {
             return (
-              <Col sm style={{ marginBottom: '2%' }}>
+              <Col sm style={{ marginBottom: "2%" }}>
                 <Card
                   key={book.id}
-                  style={{ height: '100%' }}
-                  onMouseEnter={event => {
-                    event.currentTarget.style.transform = 'scale(1.05)';
+                  style={{ height: "100%", cursor: "pointer" }}
+                  onMouseEnter={(event) => {
+                    event.currentTarget.style.transform = "scale(1.05)";
                     event.currentTarget.style.boxShadow =
-                      '0 4px 8px 0 rgba(0, 0, 0, 0.2)';
+                      "0 4px 8px 0 rgba(0, 0, 0, 0.2)";
                   }}
-                  onMouseLeave={event => {
-                    event.currentTarget.style.transform = 'scale(1)';
-                    event.currentTarget.style.boxShadow = 'none';
+                  onMouseLeave={(event) => {
+                    event.currentTarget.style.transform = "scale(1)";
+                    event.currentTarget.style.boxShadow = "none";
                   }}
                   onClick={() => {
                     toggle();
@@ -69,9 +68,9 @@ function BookList(props: Props) {
                     <CardTitle
                       tag="h5"
                       style={{
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
                       }}
                       title={book.title}
                     >
@@ -80,9 +79,9 @@ function BookList(props: Props) {
                     <CardSubtitle
                       tag="h6"
                       style={{
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
                       }}
                     >
                       {book.author}
@@ -103,11 +102,11 @@ function BookList(props: Props) {
           <ModalBody>
             Written by: {selectedBook?.author}
             <br />
-            Genre: {selectedBook?.genre.join(', ')}
+            Genre: {selectedBook?.genre.join(", ")}
             <br />
-            {selectedBook?.category.length !== 0 && 'Category: '}
+            {selectedBook?.category.length !== 0 && "Category: "}
             {selectedBook?.category.length !== 0 &&
-              selectedBook?.category.join(', ')}
+              selectedBook?.category.join(", ")}
             {selectedBook?.category.length !== 0 && <br />}
             Year of release: {selectedBook?.year}
             <br />
@@ -117,15 +116,15 @@ function BookList(props: Props) {
             <br />
             {selectedBook?.awards.length !== 0 && (
               <>
-                {'Awards Won: '}
+                {"Awards Won: "}
                 <ul>
-                  {selectedBook?.awards.map(award => (
+                  {selectedBook?.awards.map((award) => (
                     <li>{award}</li>
                   ))}
                 </ul>
               </>
             )}
-            Price: {'$' + selectedBook?.price}
+            Price: {"$" + selectedBook?.price}
           </ModalBody>
         </Modal>
       </Container>

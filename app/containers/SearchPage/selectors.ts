@@ -1,6 +1,6 @@
-import { createSelector } from 'reselect';
-import { ApplicationRootState } from 'types';
-import { initialState } from './reducer';
+import { createSelector } from "reselect";
+import { ApplicationRootState } from "types";
+import { initialState } from "./reducer";
 
 /**
  * Direct selector to the searchPage state domain
@@ -18,13 +18,30 @@ const selectSearchPageDomain = (state: ApplicationRootState) =>
  */
 
 const makeSelectSearchPage = () =>
-  createSelector(selectSearchPageDomain, substate => substate);
+  createSelector(selectSearchPageDomain, (substate) => substate);
 
 const makeSelectSearchResults = () =>
   createSelector(
     selectSearchPageDomain,
-    substate => substate.searchPage.searchResults,
+    (substate) => substate.searchPage.searchResults
+  );
+
+const makeSelectSearchTotalHits = () =>
+  createSelector(
+    selectSearchPageDomain,
+    (substate) => substate.searchPage.totalHits
+  );
+
+const makeSelectSearchPageCurrentPage = () =>
+  createSelector(
+    selectSearchPageDomain,
+    (substate) => substate.searchPage.currentPage
   );
 
 export default makeSelectSearchPage;
-export { selectSearchPageDomain, makeSelectSearchResults };
+export {
+  selectSearchPageDomain,
+  makeSelectSearchResults,
+  makeSelectSearchTotalHits,
+  makeSelectSearchPageCurrentPage,
+};

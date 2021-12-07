@@ -1,21 +1,21 @@
-import searchPageReducer from "../reducer";
+import chartsPageReducer from '../reducer';
 // import { someAction } from '../actions';
-import { ContainerState } from "../types";
+import { ContainerState } from '../types';
 
-describe("searchPageReducer", () => {
+describe('chartsPageReducer', () => {
   let state: ContainerState;
   beforeEach(() => {
     state = {
-      searchResults: [],
-      totalHits: 0,
-      currentPage: 0,
+      default: null,
     };
   });
 
-  it("returns the initial state", () => {
+  it('returns the initial state', () => {
     const expectedResult = state;
     // eslint-disable-next-line prettier/prettier
-    expect(searchPageReducer(undefined, {} as any)).toEqual(expectedResult);
+    expect(
+      chartsPageReducer(undefined, {} as any),
+    ).toEqual(expectedResult);
   });
 
   /**
