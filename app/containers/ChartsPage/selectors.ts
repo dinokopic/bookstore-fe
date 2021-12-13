@@ -20,5 +20,35 @@ const selectChartsPageDomain = (state: ApplicationRootState) =>
 const makeSelectChartsPage = () =>
   createSelector(selectChartsPageDomain, (substate) => substate);
 
+const makeSelectChartsPagePriceData = () =>
+  createSelector(
+    selectChartsPageDomain,
+    (substate) => substate.chartsPage.priceData
+  );
+
+const makeSelectChartsPageProfitData = () =>
+  createSelector(
+    selectChartsPageDomain,
+    (substate) => substate.chartsPage.profitData
+  );
+
+const makeSelectChartsPageBestSellingGenreData = () =>
+  createSelector(
+    selectChartsPageDomain,
+    (substate) => substate.chartsPage.bestSellingGenresData
+  );
+
+const makeSelectChartsPageBestSellingBooksData = () =>
+  createSelector(
+    selectChartsPageDomain,
+    (substate) => substate.chartsPage.bestSellingBooksData
+  );
+
 export default makeSelectChartsPage;
-export { selectChartsPageDomain };
+export {
+  selectChartsPageDomain,
+  makeSelectChartsPagePriceData,
+  makeSelectChartsPageProfitData,
+  makeSelectChartsPageBestSellingGenreData,
+  makeSelectChartsPageBestSellingBooksData,
+};

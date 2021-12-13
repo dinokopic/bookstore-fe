@@ -3,12 +3,13 @@
  * BookList
  *
  */
+import BookModal from "components/BookModal";
 import React from "react";
 
 // import styled from 'styles/styled-components';
 
 import { FormattedMessage } from "react-intl";
-//import './customCss.css';
+import "./customCss.css";
 import {
   Card,
   CardBody,
@@ -19,9 +20,6 @@ import {
   CardTitle,
   Col,
   Container,
-  Modal,
-  ModalBody,
-  ModalHeader,
   Row,
 } from "reactstrap";
 import { Book } from "types";
@@ -36,28 +34,31 @@ function BookList(props: Props) {
   const [modal, setModal] = React.useState(false);
   const [selectedBook, setSelectedBook] = React.useState<Book>();
 
+  const mouseEnterEvent = (event) => {
+    event.currentTarget.style.transform = "scale(1.05)";
+    event.currentTarget.style.boxShadow = "0 4px 8px 0 rgba(0, 0, 0, 0.2)";
+  };
+
+  const mouseLeaveEvent = (event) => {
+    event.currentTarget.style.transform = "scale(1)";
+    event.currentTarget.style.boxShadow = "none";
+  };
+
   // Toggle for Modal
   const toggle = () => setModal(!modal);
 
   return (
     <div>
-      <Container fluid>
+      <Container fluid className="bookList">
         <Row sm="2" md="3" lg="4">
           {props.books.map((book) => {
             return (
-              <Col sm style={{ marginBottom: "2%" }}>
+              <Col sm className="bookListCol">
                 <Card
                   key={book.id}
-                  style={{ height: "100%", cursor: "pointer" }}
-                  onMouseEnter={(event) => {
-                    event.currentTarget.style.transform = "scale(1.05)";
-                    event.currentTarget.style.boxShadow =
-                      "0 4px 8px 0 rgba(0, 0, 0, 0.2)";
-                  }}
-                  onMouseLeave={(event) => {
-                    event.currentTarget.style.transform = "scale(1)";
-                    event.currentTarget.style.boxShadow = "none";
-                  }}
+                  className="bookListCard"
+                  onMouseEnter={mouseEnterEvent}
+                  onMouseLeave={mouseLeaveEvent}
                   onClick={() => {
                     toggle();
                     setSelectedBook(book);
@@ -67,66 +68,22 @@ function BookList(props: Props) {
                   <CardBody>
                     <CardTitle
                       tag="h5"
-                      style={{
-                        whiteSpace: "nowrap",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                      }}
+                      className="bookListText"
                       title={book.title}
                     >
                       {book.title}
                     </CardTitle>
-                    <CardSubtitle
-                      tag="h6"
-                      style={{
-                        whiteSpace: "nowrap",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                      }}
-                    >
+                    <CardSubtitle tag="h6" className="bookListText">
                       {book.author}
                     </CardSubtitle>
-                    <CardText>Price: {book.price}</CardText>
+                    <CardText>Price: ${book.price}</CardText>
                   </CardBody>
                 </Card>
               </Col>
             );
           })}
         </Row>
-        <Modal
-          isOpen={modal}
-          toggle={toggle}
-          modalTransition={{ timeout: 100 }}
-        >
-          <ModalHeader toggle={toggle}>{selectedBook?.title}</ModalHeader>
-          <ModalBody>
-            Written by: {selectedBook?.author}
-            <br />
-            Genre: {selectedBook?.genre.join(", ")}
-            <br />
-            {selectedBook?.category.length !== 0 && "Category: "}
-            {selectedBook?.category.length !== 0 &&
-              selectedBook?.category.join(", ")}
-            {selectedBook?.category.length !== 0 && <br />}
-            Year of release: {selectedBook?.year}
-            <br />
-            Number of pages: {selectedBook?.number_of_pages}
-            <br />
-            Number of copies sold: {selectedBook?.sold}
-            <br />
-            {selectedBook?.awards.length !== 0 && (
-              <>
-                {"Awards Won: "}
-                <ul>
-                  {selectedBook?.awards.map((award) => (
-                    <li>{award}</li>
-                  ))}
-                </ul>
-              </>
-            )}
-            Price: {"$" + selectedBook?.price}
-          </ModalBody>
-        </Modal>
+        <BookModal selectedBook={selectedBook} toggle={toggle} modal={modal} />
       </Container>
     </div>
   );

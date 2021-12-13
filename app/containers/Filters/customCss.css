@@ -1,0 +1,75 @@
+.heading {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  padding-bottom: 8px;
+}
+
+.searchHeading {
+  display: flex;
+  align-items: center;
+}
+
+.filtersHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 12px;
+}
+
+.removeFiltersButton {
+  background: none;
+  border: none;
+  color: cornflowerblue;
+}
+
+.segmentGrid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+}
+
+.searchSegment {
+  display: flex;
+  align-items: center;
+  padding-right: 12px;
+  height: 100%;
+}
+
+.authorFiltersHolder {
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.authorFiltersLabel {
+  margin-right: 1rem;
+  min-width: 65px;
+}
+
+.authorFilters {
+  width: 213px;
+}
+
+.genreFiltersHolder {
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.genreFiltersLabel {
+  margin-right: 1rem;
+  min-width: 58px;
+}
+
+.numberOfAwardsFiltersHolder {
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+}
+
+.numberOfAwardsFiltersLabel {
+  margin-right: 1rem;
+  min-width: 144px;
+}

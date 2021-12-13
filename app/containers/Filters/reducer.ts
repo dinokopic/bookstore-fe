@@ -4,21 +4,21 @@
  *
  */
 
-import ActionTypes from './constants';
-import { ContainerState, ContainerActions } from './types';
+import ActionTypes from "./constants";
+import { ContainerState, ContainerActions } from "./types";
 
 export const initialState: ContainerState = {
   authors: [],
   genres: [],
   numberOfAwards: [],
-  selectedAuthor: '',
-  selectedGenre: '',
-  selectedNumberOfAwards: '',
+  selectedAuthor: "",
+  selectedGenre: "",
+  selectedNumberOfAwards: "",
 };
 
 function filtersReducer(
   state: ContainerState = initialState,
-  action: ContainerActions,
+  action: ContainerActions
 ): ContainerState {
   switch (action.type) {
     case ActionTypes.DEFAULT_ACTION:
@@ -42,6 +42,7 @@ function filtersReducer(
     case ActionTypes.GET_SELECTED_AUTHOR:
       return state;
     case ActionTypes.SET_SELECTED_AUTHOR:
+      console.log("Selected author", action.payload);
       return { ...state, selectedAuthor: action.payload };
     case ActionTypes.GET_SELECTED_GENRE:
       return state;

@@ -1,0 +1,37 @@
+.dropdownHolder {
+  flex-grow: 1;
+}
+
+.dropdown-item:active {
+  background-color: firebrick;
+}
+
+.dropdown-item.active {
+  background-color: firebrick;
+}
+
+.dropdown-toggle::after {
+  position: absolute;
+  right: 10px;
+  top: 18px;
+}
+
+.dropdown-toggle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.authorDropdown {
+  width: 213px !important;
+  padding-right: 25px;
+}
+
+.genreDropdown {
+  width: 100%;
+}
+
+.numberOfAwardsDropdown {
+  width: 100%;
+}

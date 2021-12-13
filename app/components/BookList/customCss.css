@@ -1,3 +1,18 @@
-.modal-backdrop.show {
-  opacity: 10% !important;
+.bookList {
+  padding: 0;
+}
+
+.bookListCol {
+  margin-bottom: 2%;
+}
+
+.bookListCard {
+  height: 100%;
+  cursor: pointer;
+}
+
+.bookListCardText {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

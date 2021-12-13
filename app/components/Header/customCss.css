@@ -1,0 +1,21 @@
+.navItem {
+  color: white;
+  border: none;
+  background-color: firebrick;
+}
+
+.navItemActive {
+  text-decoration: underline;
+}
+
+.navItem:active {
+  background-color: firebrick;
+}
+
+.navItem:hover {
+  color: black;
+}
+
+.navBar {
+  background-color: firebrick;
+}

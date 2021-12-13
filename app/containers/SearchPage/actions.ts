@@ -14,6 +14,9 @@ export const defaultAction = () => action(ActionTypes.DEFAULT_ACTION);
 
 export const getSearchResults = () => action(ActionTypes.GET_SEARCH_RESULTS);
 
+export const getSearchResultsError = () =>
+  action(ActionTypes.GET_SEARCH_RESULTS_ERROR);
+
 export const setSearchResults = (
   searchResults: Array<Book>,
   totalHits: number

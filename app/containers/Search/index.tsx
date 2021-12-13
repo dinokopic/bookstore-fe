@@ -4,8 +4,7 @@
  *
  */
 
-import React, { useEffect, useState } from "react";
-import { FormattedMessage } from "react-intl";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
@@ -20,9 +19,7 @@ import {
   getNumberOfAwardsFiltersAction,
 } from "containers/Filters/actions";
 import { getSearchResults } from "containers/SearchPage/actions";
-import { InputGroup } from "reactstrap";
-import Input from "containers/HomePage/Input";
-import Button from "components/Button";
+import "./customCss.css";
 
 const stateSelector = createStructuredSelector({
   search: makeSelectSearch(),
@@ -47,22 +44,23 @@ function Search(props: Props) {
   }, [query]);
 
   return (
-    <div style={{ display: "flex" }}>
+    <div className="searchHolder">
       <form
+        className="searchForm"
         onSubmit={(e) => {
           e.preventDefault();
         }}
       >
-        Enter the title:
         <input
-          type="text"
+          type="search"
+          className="searchInput"
           onChange={(event) => {
             dispatch(setSearchQuery(event.target.value));
           }}
           value={query}
+          placeholder="Enter title"
         />
       </form>
-      <button onClick={() => dispatch(setSearchQuery(""))}>Reset</button>
     </div>
   );
 }

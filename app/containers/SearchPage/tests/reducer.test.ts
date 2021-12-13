@@ -9,6 +9,8 @@ describe("searchPageReducer", () => {
       searchResults: [],
       totalHits: 0,
       currentPage: 0,
+      loading: false,
+      error: false,
     };
   });
 

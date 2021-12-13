@@ -14,6 +14,8 @@ interface SearchPageState {
   searchResults: Array<Book>;
   totalHits: number;
   currentPage: number;
+  loading: boolean;
+  error: boolean;
 }
 
 /* --- ACTIONS --- */

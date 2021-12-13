@@ -13,6 +13,7 @@ import {
   getAuthorFiltersAction,
   getGenreFiltersAction,
   getNumberOfAwardsFiltersAction,
+  setAuthorFiltersAction,
   setSelectedAuthor,
   setSelectedGenre,
   setSelectedNumberOfAwards,
@@ -32,6 +33,8 @@ import Search from "containers/Search";
 import BookDropdown from "components/BookDropdown";
 import { FilterType } from "./types";
 import { getSearchResults } from "containers/SearchPage/actions";
+
+import "./customCss.css";
 
 const stateSelector = createStructuredSelector({
   filters: makeSelectFilters(),
@@ -66,52 +69,53 @@ function Filters(props: Props) {
   const dispatch = useDispatch(); // eslint-disable-line @typescript-eslint/no-unused-vars
 
   useEffect(() => {
+    dispatch(getAuthorFiltersAction());
     dispatch(getGenreFiltersAction());
     dispatch(getNumberOfAwardsFiltersAction());
     dispatch(getSearchResults());
-  }, [selectedAuthor]);
+  }, []);
 
-  useEffect(() => {
-    dispatch(getAuthorFiltersAction());
-    dispatch(getNumberOfAwardsFiltersAction());
-    dispatch(getSearchResults());
-  }, [selectedGenre]);
-
-  useEffect(() => {
-    dispatch(getAuthorFiltersAction());
-    dispatch(getGenreFiltersAction());
-    dispatch(getSearchResults());
-  }, [selectedNumberOfAwards]);
+  const removeFilters = () => {
+    dispatch(setSelectedAuthor(""));
+    dispatch(setSelectedGenre(""));
+    dispatch(setSelectedNumberOfAwards(""));
+  };
 
   return (
     <div>
-      <Search />
-      <br />
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
-          <div style={{ marginRight: "1rem" }}>Authors:</div>
+      <div className="heading">
+        <div className="searchHeading">
+          <h3>Search</h3>
+        </div>
+        <div className="filtersHeading">
+          <div>
+            <h3>Filters</h3>
+          </div>
+          <button className="removeFiltersButton" onClick={removeFilters}>
+            Remove all
+          </button>
+        </div>
+      </div>
+      <div className="segmentGrid">
+        <div className="searchSegment">
+          <Search />
+        </div>
+        <div className="authorFiltersHolder">
+          <div className="authorFiltersLabel">Authors:</div>
           <BookDropdown
             isRadio={true}
             options={authors.map(({ key }: FilterType) => key)}
             handleOnClick={(selectedAuthor) => {
+              console.log("KLIK NA DROPDOWN ZA AUTORA");
               dispatch(setSelectedAuthor(selectedAuthor));
             }}
             optionsCount={authors.map(({ doc_count }: FilterType) => doc_count)}
             selectedOption={selectedAuthor}
+            className="authorDropdown"
           />
         </div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
-          <div style={{ marginRight: "1rem" }}>Genres:</div>
+        <div className="genreFiltersHolder">
+          <div className="genreFiltersLabel">Genres:</div>
           <BookDropdown
             isRadio={true}
             options={genres.map(({ key }: FilterType) => key)}
@@ -120,15 +124,11 @@ function Filters(props: Props) {
             }}
             optionsCount={genres.map(({ doc_count }: FilterType) => doc_count)}
             selectedOption={selectedGenre}
+            className="genreDropdown"
           />
         </div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
-          <div style={{ marginRight: "1rem" }}>Number of awards:</div>
+        <div className="numberOfAwardsFiltersHolder">
+          <div className="numberOfAwardsFiltersLabel">Number of awards:</div>
           <BookDropdown
             isRadio={true}
             options={numberOfAwards.map(({ key }: FilterType) => key)}
@@ -139,6 +139,7 @@ function Filters(props: Props) {
               ({ doc_count }: FilterType) => doc_count
             )}
             selectedOption={selectedNumberOfAwards}
+            className="numberOfAwardsDropdown"
           />
         </div>
       </div>

@@ -7,19 +7,44 @@ import NavBar from "./NavBar";
 import HeaderLink from "./HeaderLink";
 import Banner from "./newBanner.jpg";
 import messages from "./messages";
+import "./customCss.css";
+import { Page } from "containers/App/reducer";
+import { useDispatch } from "react-redux";
+import { setSelectedPage } from "containers/App/actions";
 
-function Header() {
+interface Props {
+  selectedPage: Page;
+}
+
+function Header(props: Props) {
+  const { selectedPage } = props;
+  const dispatch = useDispatch();
   return (
     <div>
-      <A href="https://www.reactboilerplate.com/">
-        <Img src={Banner} alt="react-boilerplate - Logo" />
-      </A>
-      <NavBar>
-        <HeaderLink to="/">
+      <Img src={Banner} alt="react-boilerplate - Logo" />
+      <NavBar className="navBar">
+        <HeaderLink
+          className={`navItem ${selectedPage === Page.home && "navItemActive"}`}
+          to="/"
+        >
           <FormattedMessage {...messages.home} />
         </HeaderLink>
-        <HeaderLink to="/search">Search</HeaderLink>
-        <HeaderLink to="/charts">Charts</HeaderLink>
+        <HeaderLink
+          className={`navItem ${
+            selectedPage === Page.search && "navItemActive"
+          }`}
+          to="/search"
+        >
+          Search
+        </HeaderLink>
+        <HeaderLink
+          className={`navItem ${
+            selectedPage === Page.charts && "navItemActive"
+          }`}
+          to="/charts"
+        >
+          Charts
+        </HeaderLink>
       </NavBar>
     </div>
   );

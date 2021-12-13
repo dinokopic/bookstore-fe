@@ -1,10 +1,10 @@
-import { Book } from 'types';
-import { ActionType } from 'typesafe-actions';
-import * as actions from './actions';
+import { Book } from "types";
+import { ActionType } from "typesafe-actions";
+import * as actions from "./actions";
 
 enum OrderByCategory {
-  popular = 'Popular',
-  latest = 'Latest',
+  popular = "Popular",
+  latest = "Latest",
 }
 
 /* --- STATE --- */
@@ -13,6 +13,9 @@ interface LandingPageState {
   latestBooks: Array<Book>;
   totalHits: number;
   selectedCategory: OrderByCategory;
+  currentPage: number;
+  loading: boolean;
+  error: boolean;
 }
 
 /* --- ACTIONS --- */

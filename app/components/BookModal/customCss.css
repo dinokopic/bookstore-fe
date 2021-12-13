@@ -1,0 +1,39 @@
+.description {
+  padding-left: 1rem;
+  flex-grow: 1;
+  position: relative;
+}
+
+.modal-header h5 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.bookModal {
+  min-width: 60%;
+}
+
+.bookModalHeader {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.bookModalBody {
+  display: flex;
+}
+
+.bookModalBodyImage {
+  height: 500px;
+  width: 350px;
+}
+
+.bookModalPrice {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 24px;
+}
+
+.bookModalMainContent {
+  font-size: 20px;
+}

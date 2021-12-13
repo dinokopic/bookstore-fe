@@ -38,10 +38,24 @@ const makeSelectSearchPageCurrentPage = () =>
     (substate) => substate.searchPage.currentPage
   );
 
+const makeSelectSearchPageLoading = () =>
+  createSelector(
+    selectSearchPageDomain,
+    (substate) => substate.searchPage.loading
+  );
+
+const makeSelectSearchPageError = () =>
+  createSelector(
+    selectSearchPageDomain,
+    (substate) => substate.searchPage.error
+  );
+
 export default makeSelectSearchPage;
 export {
   selectSearchPageDomain,
   makeSelectSearchResults,
   makeSelectSearchTotalHits,
   makeSelectSearchPageCurrentPage,
+  makeSelectSearchPageLoading,
+  makeSelectSearchPageError,
 };

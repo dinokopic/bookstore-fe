@@ -1,0 +1,18 @@
+.page-link {
+  color: black;
+}
+
+.page-link:hover {
+  color: firebrick;
+}
+
+.page-item.active .page-link {
+  background-color: firebrick;
+  border-color: firebrick;
+}
+
+.paginationHolder {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}

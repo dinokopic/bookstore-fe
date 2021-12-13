@@ -1,0 +1,26 @@
+.bookListHolder {
+  min-height: 400px;
+}
+
+.spinnerHolder {
+  min-height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.landingPageHeading {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  align-items: center;
+}
+
+.landingPageHeading h3 {
+  margin: 0;
+}
+
+.orderByDropdown {
+  display: flex;
+  align-items: center;
+  padding-left: 16px;
+}

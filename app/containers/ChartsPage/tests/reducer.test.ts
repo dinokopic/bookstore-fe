@@ -1,21 +1,22 @@
-import chartsPageReducer from '../reducer';
+import chartsPageReducer from "../reducer";
 // import { someAction } from '../actions';
-import { ContainerState } from '../types';
+import { ContainerState } from "../types";
 
-describe('chartsPageReducer', () => {
+describe("chartsPageReducer", () => {
   let state: ContainerState;
   beforeEach(() => {
     state = {
-      default: null,
+      priceData: [],
+      profitData: [],
+      bestSellingGenresData: [],
+      bestSellingBooksData: [],
     };
   });
 
-  it('returns the initial state', () => {
+  it("returns the initial state", () => {
     const expectedResult = state;
     // eslint-disable-next-line prettier/prettier
-    expect(
-      chartsPageReducer(undefined, {} as any),
-    ).toEqual(expectedResult);
+    expect(chartsPageReducer(undefined, {} as any)).toEqual(expectedResult);
   });
 
   /**

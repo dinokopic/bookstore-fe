@@ -1,24 +1,22 @@
-import { call, put, takeLatest } from '@redux-saga/core/effects';
-import { queryCreator } from 'utils/query-creator';
-import request from 'utils/request';
-import { setBooks, setLatestBooks } from './actions';
-import ActionTypes from './constants';
+import { call, put, takeLatest } from "@redux-saga/core/effects";
+import { queryCreator } from "utils/query-creator";
+import request from "utils/request";
+import { setBooks, setLatestBooks } from "./actions";
+import ActionTypes from "./constants";
 
-const requestURL = 'http://localhost:9000/books/';
+const requestURL = "http://localhost:9000/books/";
 
 export function* getBooks(action: any) {
   const { page, size } = action.payload;
-  console.log('POZIVAM SE');
   const response = yield call(
     request,
     requestURL +
-      'popular' +
+      "popular" +
       queryCreator({
         page,
         size,
-      }),
+      })
   );
-  console.log(response);
   yield put(setBooks(response.books, response.totalHits));
 }
 
@@ -27,14 +25,12 @@ export function* getLatestBooks(action: any) {
   const response = yield call(
     request,
     requestURL +
-      'latest' +
+      "latest" +
       queryCreator({
         page,
         size,
-      }),
+      })
   );
-  console.log('Proslo');
-  console.log(response);
   yield put(setLatestBooks(response.books, response.totalHits));
 }
 

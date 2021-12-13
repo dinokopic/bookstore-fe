@@ -1,24 +1,31 @@
-import { ContainerState, ContainerActions } from './types';
-import ActionTypes from './constants';
+import { ContainerState, ContainerActions } from "./types";
+import ActionTypes from "./constants";
 
+export enum Page {
+  home = "home",
+  search = "search",
+  charts = "charts",
+}
 // The initial state of the App
 export const initialState: ContainerState = {
   loading: false,
   error: false,
-  currentUser: '',
+  currentUser: "",
   userData: {
     repos: [],
   },
+  selectedPage: Page.home,
 };
 
 // Take this container's state (as a slice of root state), this container's actions and return new state
 function appReducer(
   state: ContainerState = initialState,
-  action: ContainerActions,
+  action: ContainerActions
 ): ContainerState {
   switch (action.type) {
     case ActionTypes.LOAD_REPOS:
       return {
+        ...state,
         currentUser: state.currentUser,
         loading: true,
         error: false,
@@ -28,6 +35,7 @@ function appReducer(
       };
     case ActionTypes.LOAD_REPOS_SUCCESS:
       return {
+        ...state,
         currentUser: action.payload.username,
         loading: false,
         error: state.error,
@@ -41,6 +49,13 @@ function appReducer(
         error: action.payload,
         loading: false,
         ...rest,
+      };
+    case ActionTypes.GET_SELECTED_PAGE:
+      return state;
+    case ActionTypes.SET_SELECTED_PAGE:
+      return {
+        ...state,
+        selectedPage: action.payload,
       };
     default:
       return state;

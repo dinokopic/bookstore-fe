@@ -1,8 +1,8 @@
-import landingPageReducer from '../reducer';
+import landingPageReducer from "../reducer";
 // import { someAction } from '../actions';
-import { ContainerState, OrderByCategory } from '../types';
+import { ContainerState, OrderByCategory } from "../types";
 
-describe('landingPageReducer', () => {
+describe("landingPageReducer", () => {
   let state: ContainerState;
   beforeEach(() => {
     state = {
@@ -10,10 +10,13 @@ describe('landingPageReducer', () => {
       latestBooks: [],
       totalHits: 0,
       selectedCategory: OrderByCategory.popular,
+      currentPage: 0,
+      loading: false,
+      error: false,
     };
   });
 
-  it('returns the initial state', () => {
+  it("returns the initial state", () => {
     const expectedResult = state;
     // eslint-disable-next-line prettier/prettier
     expect(landingPageReducer(undefined, {} as any)).toEqual(expectedResult);

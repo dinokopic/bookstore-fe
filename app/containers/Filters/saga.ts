@@ -38,6 +38,7 @@ export function* getGenreFilters() {
   const numberOfAwards = yield select(makeSelectNumberOfAwards());
   const urlQuery = queryCreator({ title, author, numberOfAwards });
   const genreFilters = yield call(request, requestURL + "genre" + urlQuery);
+  console.log("FETCHED GENRES", genreFilters);
   yield put(setGenreFiltersAction(genreFilters));
 }
 
@@ -53,6 +54,21 @@ export function* getNumberOfAwardsFilters() {
   yield put(setNumberOfAwardsFiltersAction(numberOfAwardsFilters));
 }
 
+export function* selectedAuthorChanged(author: any) {
+  yield call(getGenreFilters);
+  yield call(getNumberOfAwardsFilters);
+}
+
+export function* selectedGenreChanged() {
+  yield call(getAuthorFilters);
+  yield call(getNumberOfAwardsFilters);
+}
+
+export function* selectedNumberOfAwardsChanged() {
+  yield call(getAuthorFilters);
+  yield call(getGenreFilters);
+}
+
 // Individual exports for testing
 export default function* filtersSaga() {
   yield takeLatest(ActionTypes.GET_AUTHOR_FILTERS, getAuthorFilters);
@@ -60,6 +76,12 @@ export default function* filtersSaga() {
   yield takeLatest(
     ActionTypes.GET_NUMBER_OF_AWARDS_FILTERS,
     getNumberOfAwardsFilters
+  );
+  yield takeLatest(ActionTypes.SET_SELECTED_AUTHOR, selectedAuthorChanged);
+  yield takeLatest(ActionTypes.SET_SELECTED_GENRE, selectedGenreChanged);
+  yield takeLatest(
+    ActionTypes.SET_SELECTED_NUMBER_OF_AWARDS,
+    selectedNumberOfAwardsChanged
   );
   // See example in containers/HomePage/saga.js
 }

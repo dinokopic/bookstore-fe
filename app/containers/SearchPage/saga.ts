@@ -4,6 +4,7 @@ import {
   makeSelectNumberOfAwards,
 } from "containers/Filters/selectors";
 import ActionTypes from "./constants";
+import FilterActionTypes from "../Filters/constants";
 import { makeSelectQuery } from "containers/Search/selectors";
 import { take, call, put, select, takeLatest } from "redux-saga/effects";
 import { queryCreator } from "utils/query-creator";
@@ -18,16 +19,13 @@ export function* getSearchResults() {
   const author = yield select(makeSelectAuthor());
   const genre = yield select(makeSelectGenre());
   const numberOfAwards = yield select(makeSelectNumberOfAwards());
-  //
   const page = yield select(makeSelectSearchPageCurrentPage());
-  console.log(page);
+
   let urlQuery = queryCreator({ title, author, genre, numberOfAwards, page });
   const { books, totalHits } = yield call(request, requestURL + urlQuery);
   if (books.length === 0 && totalHits !== 0) {
-    console.log("USLO");
     yield put(setCurrentPage(0));
   } else {
-    console.log(books, totalHits);
     yield put(setSearchResults(books, totalHits));
   }
 }
@@ -35,5 +33,11 @@ export function* getSearchResults() {
 // Individual exports for testing
 export default function* searchPageSaga() {
   yield takeLatest(ActionTypes.GET_SEARCH_RESULTS, getSearchResults);
+  yield takeLatest(FilterActionTypes.SET_SELECTED_AUTHOR, getSearchResults);
+  yield takeLatest(FilterActionTypes.SET_SELECTED_GENRE, getSearchResults);
+  yield takeLatest(
+    FilterActionTypes.SET_SELECTED_NUMBER_OF_AWARDS,
+    getSearchResults
+  );
   // See example in containers/HomePage/saga.js
 }
